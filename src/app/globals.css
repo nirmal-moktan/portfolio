@@ -1,26 +1,190 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  color-scheme: light;
+  --background: #f5efdf;
+  --foreground: #202b42;
+  --surface: #fffcf3;
+  --surface-muted: #eee3cc;
+  --muted: #5e574e;
+  --accent: #7b2d42;
+  --accent-soft: #f1e2dc;
+  --accent-contrast: #fffcf3;
+  --gold: #9b7533;
+  --border: #d6c397;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-gold: var(--gold);
+  --color-border: var(--border);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: Georgia, "Palatino Linotype", "Book Antiqua", serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  body {
+    background-color: var(--background);
+    background-image:
+      radial-gradient(ellipse at 0% 15%, rgb(155 117 51 / 0.08), transparent 42rem),
+      radial-gradient(ellipse at 100% 55%, rgb(123 45 66 / 0.04), transparent 48rem),
+      linear-gradient(180deg, #faf6eb, var(--background) 50%, #f8f2e5);
+    color: var(--foreground);
+    font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+  }
+
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-contrast);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .manuscript-nav {
+    background: rgb(250 246 235 / 0.96);
+    box-shadow: 0 2px 12px rgb(32 43 66 / 0.04);
+  }
+
+  .hero-background {
+    background-color: var(--surface);
+    background-image:
+      radial-gradient(ellipse at 50% 0%, rgb(155 117 51 / 0.18), transparent 65%),
+      radial-gradient(ellipse at 100% 100%, rgb(123 45 66 / 0.07), transparent 55%),
+      linear-gradient(135deg, var(--surface), var(--surface-muted));
+  }
+
+  .hero-background::before {
+    position: absolute;
+    z-index: -1;
+    inset: 0.75rem;
+    border: 1px solid rgb(155 117 51 / 0.3);
+    border-radius: inherit;
+    pointer-events: none;
+    content: "";
+  }
+
+  .hero-background::after,
+  .manuscript-section::before {
+    position: absolute;
+    width: 0.75rem;
+    height: 0.75rem;
+    background: var(--gold);
+    clip-path: polygon(50% 0%, 61% 39%, 100% 50%, 61% 61%, 50% 100%, 39% 61%, 0% 50%, 39% 39%);
+    opacity: 0.6;
+    pointer-events: none;
+    content: "";
+  }
+
+  .hero-background::after {
+    top: 18%;
+    right: 12%;
+    width: 1rem;
+    height: 1rem;
+  }
+
+  .manuscript-section {
+    position: relative;
+    scroll-margin-top: 9rem;
+    background-image: radial-gradient(ellipse at 100% 0%, rgb(155 117 51 / 0.04), transparent 65%);
+  }
+
+  .manuscript-section::before {
+    top: 2rem;
+    right: 2rem;
+  }
+
+  .manuscript-heading {
+    position: relative;
+    align-self: start;
+    padding-bottom: 1.25rem;
+  }
+
+  .manuscript-heading::after {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 3rem;
+    height: 1px;
+    background: linear-gradient(to right, var(--accent), var(--gold));
+    content: "";
+  }
+
+  .manuscript-panel,
+  .project-card {
+    background-color: var(--surface);
+    background-image: radial-gradient(ellipse at 100% 0%, rgb(155 117 51 / 0.07), transparent 70%);
+  }
+
+  .project-card::before,
+  .project-card::after {
+    position: absolute;
+    width: 0.875rem;
+    height: 0.875rem;
+    border-color: rgb(155 117 51 / 0.5);
+    pointer-events: none;
+    content: "";
+  }
+
+  .project-card::before {
+    top: 0.625rem;
+    left: 0.625rem;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 0.25rem;
+  }
+
+  .project-card::after {
+    right: 0.625rem;
+    bottom: 0.625rem;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-bottom-right-radius: 0.25rem;
+  }
+
+  .external-link {
+    @apply inline-flex min-h-11 items-center justify-center rounded-md border border-border bg-surface px-5 py-2.5 text-sm font-medium text-accent transition-colors duration-200;
+    margin-top: 0.5rem;
+    margin-right: 0.75rem;
+  }
+
+  .external-link:hover {
+    @apply border-accent bg-accent text-surface;
+  }
+}
+
+@supports (backdrop-filter: blur(12px)) {
+  .manuscript-nav {
+    background: rgb(250 246 235 / 0.88);
+    backdrop-filter: blur(12px);
+  }
+}
+
+@media (min-width: 40rem) {
+  .manuscript-section {
+    scroll-margin-top: 7rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .external-link {
+    transition: none;
+  }
 }
