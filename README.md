@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Nirmal Moktan — Personal Portfolio
+
+## Overview
+
+A personal portfolio for Nirmal Moktan, a Computer Science student at Jacksonville State University. It introduces my interests, showcases my software projects and technical skills, and provides ways to connect.
+
+## Features
+
+- Responsive single-page layout with sticky section navigation.
+- About section sharing my background, interests, and approach to learning.
+- Clickable project cards for Aozora Japanese Restaurant, Spending Analyzer, and Job Application Tracker.
+- Skill badges organized into Languages, Libraries, Frameworks, and Developer Tools.
+- Contact information with GitHub, LinkedIn, an email link, and copy-to-clipboard feedback.
+- Custom navy-and-gold NM monogram favicon.
+- Subtle magical and dark-academia styling with parchment backgrounds, serif headings, antique-gold details, and burgundy accents.
+
+## Tech Stack
+
+- Next.js (App Router)
+- React
+- TypeScript
+- Tailwind CSS
 
 ## Getting Started
 
-First, run the development server:
+Requires Node.js 20.9 or newer and npm.
+
+Clone the repository, install dependencies, and start the development server:
 
 ```bash
+git clone https://github.com/nirmal-moktan/portfolio.git
+cd portfolio
+npm ci
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Create a production build:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+```
 
-## Learn More
+## Deployment
 
-To learn more about Next.js, take a look at the following resources:
+The project is configured for Next.js static export through `output: "export"` in `next.config.ts`. The build generates the static site in `out`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For Cloudflare Pages, use these settings:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Setting | Value |
+| --- | --- |
+| Framework preset | Next.js (Static HTML Export) |
+| Production branch | `main` |
+| Build command | `npm run build` |
+| Build output directory | `out` |
 
-## Deploy on Vercel
+The build command runs `next build`. See the [Cloudflare Pages static Next.js guide](https://developers.cloudflare.com/pages/framework-guides/nextjs/deploy-a-static-nextjs-site/) for deployment details.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Contact
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- [GitHub](https://github.com/nirmal-moktan)
+- [LinkedIn](https://www.linkedin.com/in/nirmal-moktan)
